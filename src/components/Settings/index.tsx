@@ -1,16 +1,10 @@
-// Settings.tsx
 import React from 'react';
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Slider, Typography } from '@mui/material';
+import { ISettingsProps } from '../../interfaces';
 
-interface SettingsProps {
-  color: string;
-  thickness: number;
-  onColorChange: (color: string) => void;
-  onThicknessChange: (thickness: number) => void;
-  setShowSettings: (arg: boolean) => void
-}
-
-const Settings: React.FC<SettingsProps> = ({ color, thickness, onColorChange, onThicknessChange, setShowSettings }) => {
+const Settings: React.FC<ISettingsProps> = (props: ISettingsProps) => {
+  const { color, thickness, onColorChange, onThicknessChange, setShowSettings } = props;
+  
   const handleColorChange = (event: SelectChangeEvent) => {
     onColorChange(event.target.value as string);
   };

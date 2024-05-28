@@ -1,25 +1,16 @@
-// Canvas.tsx
 import React, { useState, useRef } from 'react';
 import { Stage, Layer, Line, Image as KonvaImage } from 'react-konva';
 import useImage from 'use-image';
 import { Box, Button } from '@mui/material';
+import { ICanvasProps, LineSegment, Point } from '../../interfaces';
 
-interface Point {
-  x: number;
-  y: number;
-}
+const Canvas: React.FC<ICanvasProps> = (props: ICanvasProps) => {
+  const { imageUrl, color, thickness, setShowSettings } = props;
 
-interface LineSegment {
-  start: Point;
-  end: Point;
-  color: string;
-  thickness: number;
-}
-
-const Canvas: React.FC<{ imageUrl: string, color: string, thickness: number, setShowSettings: (args: boolean) => void }> = ({ imageUrl, color, thickness, setShowSettings }) => {
   const [lineSegments, setLineSegments] = useState<LineSegment[]>([]);
   const [currentPoint, setCurrentPoint] = useState<Point | null>(null);
   const [image] = useImage(imageUrl);
+  
   const stageRef = useRef<any>(null);
 
   const handleStageClick = (event: any) => {

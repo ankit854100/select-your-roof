@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { CssBaseline, Box, AppBar, Toolbar, Typography, Button } from '@mui/material';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import LightModeIcon from '@mui/icons-material/LightMode';
+import { CssBaseline, Box } from '@mui/material';
 import Canvas from './components/Canvas';
 import Settings from './components/Settings';
+import CustomAppBar from './components/CustomAppBar';
 import imageUrl from './assets/image.png';
 import './App.css'
 
@@ -34,20 +33,7 @@ const App: React.FC = () => {
     <ThemeProvider theme={mode === 'dark' ? darkTheme : lightTheme}>
       <CssBaseline />
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Select your roof
-            </Typography>
-            <Button 
-              color="inherit" sx={{ textTransform: 'none' }}
-              onClick={toggleTheme}
-            >
-              { mode === 'light' ? <DarkModeIcon sx={{ marginRight: '0.25rem'}}/> : <LightModeIcon sx={{ marginRight: '0.25rem'}}/> }
-              { mode === 'light' ? 'Dark Mode' : 'Light Mode'}
-            </Button>
-          </Toolbar>
-        </AppBar>
+        <CustomAppBar mode={mode} toggleTheme={toggleTheme} />
         { showSettings ? 
           <Box sx={{ padding: 4 }}>
             <Settings
